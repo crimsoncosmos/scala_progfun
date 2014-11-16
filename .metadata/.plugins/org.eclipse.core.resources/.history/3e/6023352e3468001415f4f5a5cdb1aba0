@@ -1,0 +1,11 @@
+package week07
+
+object session4 {
+  def from(n: Int): Stream[Int] = n #:: from(n +  //> from: (n: Int)Stream[Int]1)
+  val nats = from                                 //> nats  : Stream[Int] = Stream(0, ?)(0)
+  nats map (_                                     //> res0: scala.collection.immutable.Stream[Int] = Stream(0, ?)* 4)
+  def sieve(s: Stream[Int]): Stream[Int] =
+    s.head #:: sieve(s.tail filter (_ % s.he      //> sieve: (s: Stream[Int])Stream[Int]ad != 0))
+  val primes = sie                                //> primes  : Stream[Int] = Stream(2, ?)ve(from(2))
+  (primes ta                                      //> res1: List[Int] = List(2, 3, 5, 7, 11, 13, 17, 19, 23, 29)ke 10).toList
+}

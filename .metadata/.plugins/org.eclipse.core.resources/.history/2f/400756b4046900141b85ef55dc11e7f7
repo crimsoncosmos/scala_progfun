@@ -1,0 +1,6 @@
+package week07
+
+object session5 {
+  val problem = new Pouring(Vector(4,7))
+  problem.moves
+}

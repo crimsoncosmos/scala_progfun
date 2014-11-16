@@ -1,0 +1,89 @@
+package recfun
+import common._
+
+object Main {
+  def main(args: Array[String]) {
+    println("Pascal's Triangle")
+    for (row <- 0 to 10) {
+      for (col <- 0 to row)
+        print(pascal(col, row) + " ")
+      println()
+    }
+  }
+
+  /**
+   * Exercise 1
+   */
+  def pascal(c: Int, r: Int): Int = {
+    if (c == 0 || r == 0 || c == r) 1
+    else pascal(c, r - 1) + pascal(c - 1, r - 1)
+  }
+
+  /**
+   * Exercise 2
+   */
+  def balance(chars: List[Char]): Boolean = {
+    def op(chars: List[Char], open: Int): Boolean = {
+      if (chars.isEmpty || open < 0) open == 0
+      else if (chars.head == '(') op(chars.tail, open + 1)
+      else if (chars.head == ')') op(chars.tail, open - 1)
+      else op(chars.tail, open)
+    }
+
+    op(chars, 0)
+  }
+
+  /**
+   * Exercise 3
+   */
+  def countChange(money: Int, coins: List[Int]): Int = {
+    val initial = money
+    val ini_coins = coins
+    var counter = 0
+    
+    def loop(money: Int, coins: List[Int]): Int = {
+      if (!coins.isEmpty) {
+        //op(money, coins.head)
+        if (money - coins.head > 0) loop(money - coins.head, coins)
+        else if (money - coins.head == 0) counter = counter + 1
+        loop(money, coins.tail)
+        counter
+      }
+      else counter
+    }
+//    def op(money: Int, coin: Int): Int = {
+//      if (money - coin > 0) loop(money - coin, coins)
+//      else if (money - coin == 0) {
+//        println("money: " + money)
+//        counter = counter + 1
+//        counter
+//      } else {
+//        counter
+//      }
+//    }
+    loop(money, coins)
+    counter
+
+    /*def op(money: Int, coins: List[Int], counter: Int): Int = {
+      if (coins.isEmpty) {
+        println("empty: " + money)
+        counter
+      }
+      else if (money - coins.head == 0) {
+        println("money: " + money + " counter+1: " + (counter + 1) + " coins: " + coins)
+        op(initial, coins.tail, counter + 1)
+        //op(initial, coins.tail, counter + 1)
+      }
+      else if (money - coins.head < 0) {
+        println("money: " + money + " counter: " + counter + " coins: " + coins)
+        counter //op (initial, coins.tail, counter)
+      }
+      //else op(money - coins.head, coins, op(money - coins.head, coins.tail, counter))
+      else {
+        println("op: money - head: " + (money - coins.head) + " counter: " + counter + " coins: " + coins) 
+        op(money - coins.head, coins, counter) + op(money - coins.head, coins.tail, counter)
+      }
+    }
+    op(money, coins, 0)*/
+  }
+}

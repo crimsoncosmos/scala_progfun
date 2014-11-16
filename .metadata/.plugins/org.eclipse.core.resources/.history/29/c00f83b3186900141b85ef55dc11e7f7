@@ -1,0 +1,10 @@
+package week07
+
+object session5 {
+  val problem = new Pouring(Vector(4,7))          //> problem  : week07.Pouring = week07.Pouring@b6bb0d4
+  problem.moves                                   //> res0: scala.collection.immutable.IndexedSeq[Product with Serializable with we
+  
+  problem.pathSets.take(3)
+                                                  //| ek07.session5.problem.Move] = Vector(Empty(0), Empty(1), Fill(0), Fill(1), Po
+                                                  //| ur(0,1), Pour(1,0))
+}
